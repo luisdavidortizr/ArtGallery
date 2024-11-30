@@ -1,0 +1,62 @@
+<h1>{{title}}</h1>
+<form method="POST" enctype="multipart/form-data">
+  <!-- Name field -->
+  <fieldset class="form-group">
+    <label for="name" class="col-form-label">
+      Name:
+    </label>
+    <input name="name" id="name" class="form-control" required value="{{artwork.name}}" />
+  </fieldset>
+
+  <!-- Publication Date field -->
+  <fieldset class="form-group">
+    <label for="published" class="col-form-label">
+      Publication Date:
+    </label>
+    <input name="published" id="published" class="form-control" required type="date" value="{{toShortDate artwork.published}}" />
+  </fieldset>
+
+  <!-- Author field -->
+  <fieldset class="form-group">
+    <label for="author" class="col-form-label">
+      Author:
+    </label>
+    <select name="author" id="author" class="form-control">
+      {{#each authors}}
+        {{createOptionElement this.name ../artwork.author}}
+      {{/each}}
+    </select>
+  </fieldset>
+
+  <!-- Price field -->
+  <fieldset class="form-group">
+    <label for="price" class="col-form-label">
+      Price:
+    </label>
+    <input name="price" id="price" class="form-control" type="number" step="0.01" value="{{artwork.price}}" />
+  </fieldset>
+
+  <!-- Status field -->
+  <fieldset class="form-group">
+    <label for="status" class="col-form-label">
+      Status:
+    </label>
+    <select name="status" id="status" class="form-control">
+      {{createOptionElement "ON SALE" artwork.status}}
+      {{createOptionElement "SOLD" artwork.status}}
+    </select>
+  </fieldset>
+
+  <!-- Image upload field -->
+  <fieldset class="mb-3">
+    <label for="image" class="form-label">
+      Artwork Image:
+    </label>
+    <input name="image" id="image" class="form-control" type="file" accept="image/*" />
+  </fieldset>
+
+  <!-- Submit button -->
+  <button class="btn btn-dark" type="submit">
+    Save
+  </button>
+</form>

@@ -7,10 +7,10 @@
         - Show the Login/Register links when user is anonymous
         - Display a logout link and the current user's email address
     - We still need to pass the User object back to the view
-- In Routes/Student.js
+- In Routes/Artwork.js
     - Modify every method that renders a view and add user object
         - Every GET handler except delete because it's a redirect
-- In Routes/Courses.js
+- In Routes/Authors.js
     - Modify every method that renders a view and add user object
         - Every GET handler
 -  Try out to verify the navbar changes accordingly
@@ -22,19 +22,19 @@
 
 ### Part 2 Adding Authorization to protect sections of my website
 
-- While logged out, navigate to /Student and /Courses
+- While logged out, navigate to /Artwork and /Authors
     - Verify that I can still perform CRUD operations
 - There are generally two approaches for securing views
     - Have 1 view for authenticated users and 1 for anonymous users
     - Or have 1 view for both but hide/show links and buttons that perform actions such as CRUD operations
     - However, this only covers what they can see. Better authorization has to be written at the controller level.
-- In Views/Students/Index.hbs
+- In Views/Artworks/Index.hbs
     - Use if-else statements to hide the Add button and the Actions column
-- In Views/Courses/Index.hbs
+- In Views/Authors/Index.hbs
     - Use a if-else statement to hide the Add button 
-- Navigate to /Students/Add while anonymous
+- Navigate to /Artworks/Add while anonymous
     - This view is still visible if somebody knows or guesses the URL, which is a security flaw
-- In Routes/Student.js
+- In Routes/Artwork.js
     - Create a new middleware function called IsLoggedIn()
         - Check user is authenticated by calling isAuthenticated() method in the request object
         - If User is authenticated execute next
@@ -47,14 +47,14 @@
     - Copy over the function
     - Export the function
 - Now we can import this middleware in any router as needed
-- Apply the same functionality for Course
-    - Routes/Course.js
-    - Inject authentication middleware function in GET and POST handlers for '/Courses/Add'
+- Apply the same functionality for Author
+    - Routes/Author.js
+    - Inject authentication middleware function in GET and POST handlers for '/Authors/Add'
 
 ### Part 3 Implementing GitHub authentication
 
 - Open a browser and navigate to https://github.com/settings/applications/new
-    - Application name should be COMP2068 Student Tracker
+    - Application name should be COMP2068 Artwork Tracker
     - Homepage URL is http://localhost:3000
     - Authorization callback URL is http://localhost:3000/github/callback this URL needs to change when deploying to Render or Azure
     - Generate the clientId and clientSecret values and copy them over to your .env file

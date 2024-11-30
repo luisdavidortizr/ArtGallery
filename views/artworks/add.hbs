@@ -1,0 +1,56 @@
+<h1>{{title}}</h1>
+<form method="POST" enctype="multipart/form-data">
+  {{!-- Input names have to match the name of the fields in the mongo schema object --}}
+  {{!-- Mapping is not automatic, but it's best practice --}}
+  <div class="container">
+    <!-- Name field -->
+    <fieldset class="mb-3">
+      <label for="name" class="form-label">
+        Name:
+      </label>
+      <input name="name" id="name" class="form-control" required />
+    </fieldset>
+
+    <!-- Publication Date field -->
+    <fieldset class="mb-3">
+      <label for="published" class="form-label">
+        Publication Date:
+      </label>
+      <input name="published" id="published" class="form-control" required type="date" />
+    </fieldset>
+
+    <!-- Author field with select dropdown -->
+    <fieldset class="mb-3">
+      <label for="author" class="form-label">
+        Author:
+      </label>
+      <select name="author" id="author" class="form-select">
+        {{!-- Loop to render options --}}
+        {{#each authors}}
+          <option>{{this.name}}</option>
+        {{/each}}
+      </select>
+    </fieldset>
+
+    <!-- New Price field -->
+    <fieldset class="mb-3">
+      <label for="price" class="form-label">
+        Price:
+      </label>
+      <input name="price" id="price" class="form-control" required type="number" step="0.01" />
+    </fieldset>
+
+    <!-- Image upload field -->
+    <fieldset class="mb-3">
+      <label for="image" class="form-label">
+        Artwork Image:
+      </label>
+      <input name="image" id="image" class="form-control" required type="file" accept="image/*" />
+    </fieldset>
+
+    <!-- Save Button -->
+    <button class="btn btn-dark" type="submit">
+      Save
+    </button>
+  </div>
+</form>

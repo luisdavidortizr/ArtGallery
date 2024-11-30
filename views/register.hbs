@@ -1,51 +1,62 @@
-<h1>
-  Register
-</h1>
+<h1>Register</h1>
+
 <form method="post">
+  <!-- Username field -->
   <fieldset class="form-group">
-    <label for="username" class="col-2 control-label">
+    <label for="username" class="col-form-label">
       Username: *
     </label>
     <input
       name="username"
       id="username"
-      required
       type="email"
+      class="form-control"
+      required
       placeholder="email@email.com"
     />
   </fieldset>
+
+  <!-- Password field -->
   <fieldset class="form-group">
-    <label for="password" class="col-2 control-label">
+    <label for="password" class="col-form-label">
       Password: *
     </label>
     <input
       name="password"
       id="password"
       type="password"
+      class="form-control"
       required
       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+      placeholder="At least 8 characters, 1 uppercase letter, 1 number"
     />
   </fieldset>
+
+  <!-- Confirm Password field -->
   <fieldset class="form-group">
-    <label for="confirm" class="col-2 control-label">
+    <label for="confirm" class="col-form-label">
       Confirm: *
     </label>
     <input
       name="confirm"
       id="confirm"
       type="password"
+      class="form-control"
       required
       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+      placeholder="Re-enter your password"
     />
   </fieldset>
+  <br/>
+
+  <!-- Submit button -->
   <fieldset class="form-group">
-    <button class="btn btn-info offset-3">
+    <button class="btn btn-dark btn-block">
       Register
     </button>
     <hr />
-    Already have an account?
-    <a href="/login" title="Login">
-      Login
-    </a>
+    <p class="text-center">
+      Already have an account? <a href="/login" title="Login">Login</a>
+    </p>
   </fieldset>
 </form>

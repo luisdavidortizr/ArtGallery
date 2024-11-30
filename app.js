@@ -5,8 +5,8 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 // Router Objects
 var indexRouter = require("./routes/index");
-var studentsRouter = require("./routes/students");
-var coursesRouter = require("./routes/courses");
+var artworksRouter = require("./routes/artworks");
+var authorsRouter = require("./routes/authors");
 // var usersRouter = require('./routes/users');
 // Import MongoDB and Configuration modules
 var mongoose = require("mongoose");
@@ -108,8 +108,8 @@ passport.deserializeUser(async (id, done) => {
 
 // Routing Configuration
 app.use("/", indexRouter);
-app.use("/students", studentsRouter);
-app.use('/courses', coursesRouter);
+app.use("/artworks", artworksRouter);
+app.use('/authors', authorsRouter);
 // app.use('/users', usersRouter);
 // Connecting to the DB
 mongoose

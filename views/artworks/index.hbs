@@ -1,0 +1,52 @@
+<h1>{{title}}</h1>
+{{!-- CRUD Functionality --}}
+{{!-- CREATE button --}}
+{{! Only show CRUD buttons if there's a session (authenticated user) }}
+{{#if user}}
+  <a href="/artworks/add" class="btn btn-dark mb-3">Add a new artwork</a>
+{{/if}}
+{{!-- READ Show Table to view all artworks in db --}}
+<table class="table table-striped table-bordered">
+    <thead>
+        <th>Artwork</th>
+        <th>Name</th>
+        <th>Publication Date</th>
+        <th>Author</th>
+        <th>Price</th>
+        <th>Status</th>
+        <th></th>
+    </thead>
+    <tbody>
+        {{!-- Retrieve all artworks and loop --}}
+        {{#each dataset}}
+        <tr>
+            <td>
+                {{#if this.image}}
+                    <img src="data:image/jpeg;base64,{{this.image}}" alt="{{this.name}} image" class="img-thumbnail" style="width: 100px; height: auto;">
+                {{else}}
+                    No Image
+                {{/if}}
+            </td>
+            <td>{{this.name}}</td>
+            {{!-- Use the hbs helper function to format the date accordingly --}}
+            <td>{{toShortDate this.published}}</td>
+            <td>{{this.author}}</td>
+            <td>${{this.price}}</td>
+            <td>{{this.status}}</td>
+            {{!-- UPDATE and DELETE buttons --}}
+            <td>
+                {{! Only show CRUD buttons if there's a session (authenticated user) }}
+                {{!-- use ../ to navigate out of the for loop into the global scope --}}
+                {{#if ../user}}
+                <a href="/artworks/edit/{{this._id}}" class="btn btn-primary">Edit</a>
+                <a
+                    href="/artworks/delete/{{this._id}}"
+                    onclick="return confirmDeletion()"
+                    class="btn btn-danger"
+                >Delete</a>
+                {{/if}}
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

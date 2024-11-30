@@ -5,7 +5,10 @@ const passport = require("passport");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  res.render("index", { title: "Express", user: req.user });
+  res.render("index", { 
+    title: "Art Gallery",
+    user: req.user 
+  });
 });
 
 // GET /login
@@ -24,7 +27,7 @@ router.get("/login", (req, res, next) => {
 router.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/students",
+    successRedirect: "/artworks",
     failureRedirect: "/login",
     failureMessage: "Invalid credentials",
   })
@@ -52,7 +55,7 @@ router.post("/register", (req, res, next) => {
       } else {
         // log user in and redirect
         req.login(newUser, (err) => {
-          res.redirect("/students");
+          res.redirect("/artworks");
         });
       }
     }
@@ -79,7 +82,7 @@ router.get(
   "/github/callback", // path
   passport.authenticate("github", { failureRedirect: "/login" }), // github middleware
   (req, res, next) => {
-    res.redirect("/students");
+    res.redirect("/artworks");
   } // custom middleware (success)
 );
 
@@ -96,7 +99,7 @@ router.get(
   "/facebook/callback", // path
   passport.authenticate("facebook", { failureRedirect: "/login" }), // facebook middleware
   (req, res, next) => {
-    res.redirect("/students");
+    res.redirect("/artworks");
   } // custom middleware (success)
 );
 
